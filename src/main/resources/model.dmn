@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="auto" xmlns:dmn="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:layout="https://products.bfs-intra.net/milestones/vr/spec/20170328/dmndi.xsd" xsi:schemaLocation="http://www.omg.org/spec/DMN/20151101/dmn.xsd http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="_KDng8EZfEemEHbY_Jf74Jg" name="auto" exporter="ACTICO Modeler" namespace="auto">
+  <dmn:extensionElements>
+    <layout:container id="_KDxR8EZfEemEHbY_Jf74Jg" name="auto" type="Dmn" href="#_KDng8EZfEemEHbY_Jf74Jg">
+      <layout:node id="_Kw0lMEZfEemEHbY_Jf74Jg" type="2009" href="#_KvoSYEZfEemEHbY_Jf74Jg">
+        <layout:location x="84" y="72"/>
+      </layout:node>
+      <layout:node id="_LLV-B0ZfEemEHbY_Jf74Jg" type="2003" href="#_LLV-AEZfEemEHbY_Jf74Jg">
+        <layout:location x="84" y="182"/>
+      </layout:node>
+      <layout:edge id="_LslC1UZfEemEHbY_Jf74Jg" type="4001" href="#http://www.omg.org/spec/DMN/20151101/dmn.xsd:InformationRequirement$_KvoSYEZfEemEHbY_Jf74Jg$_LLV-AEZfEemEHbY_Jf74Jg" source="#_LLV-B0ZfEemEHbY_Jf74Jg" target="#_Kw0lMEZfEemEHbY_Jf74Jg">
+        <layout:bendpoints points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+        <layout:sourceAnchor id="(0.496,0.0)"/>
+        <layout:targetAnchor id="(0.496,1.0)"/>
+      </layout:edge>
+      <layout:DiContainerStyle/>
+    </layout:container>
+  </dmn:extensionElements>
+  <dmn:itemDefinition id="_RjTloUZfEemEHbY_Jf74Jg" name="Person">
+    <dmn:itemComponent id="_ShS34EZfEemEHbY_Jf74Jg" name="Age">
+      <dmn:typeRef>feel:number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="__sfNsEZhEemEHbY_Jf74Jg" name="Country">
+      <dmn:typeRef>feel:string</dmn:typeRef>
+      <dmn:allowedValues id="_Ci72YEZiEemEHbY_Jf74Jg">
+        <dmn:text>&quot;Germany&quot;,&quot;Austria&quot;,&quot;United States of America&quot;</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:decision id="_KvoSYEZfEemEHbY_Jf74Jg" name="DrivingAllowed">
+    <dmn:extensionElements>
+      <layout:container id="_Nk6dcEZfEemEHbY_Jf74Jg" name="" type="DMN_Expression" href="#_KvoSYEZfEemEHbY_Jf74Jg"/>
+    </dmn:extensionElements>
+    <dmn:variable id="_KvoSYUZfEemEHbY_Jf74Jg" name="DrivingAllowed" typeRef="feel:number"/>
+    <dmn:informationRequirement>
+      <dmn:requiredInput href="#_LLV-AEZfEemEHbY_Jf74Jg"/>
+    </dmn:informationRequirement>
+    <dmn:context id="_l_hokI3kEemO-PR4jHALfw">
+      <dmn:contextEntry>
+        <dmn:variable id="_mPk2xo3kEemO-PR4jHALfw" name="table"/>
+        <dmn:decisionTable id="_yxFDwaikEem0bL_T53kuTw">
+          <dmn:input id="_yxFDw6ikEem0bL_T53kuTw">
+            <dmn:inputExpression id="_yxFDxaikEem0bL_T53kuTw">
+              <dmn:text>Person.Age</dmn:text>
+            </dmn:inputExpression>
+          </dmn:input>
+          <dmn:input id="_yxFDx6ikEem0bL_T53kuTw">
+            <dmn:inputExpression id="_yxFDyaikEem0bL_T53kuTw">
+              <dmn:text>Person.Country</dmn:text>
+            </dmn:inputExpression>
+          </dmn:input>
+          <dmn:output id="_yxFDy6ikEem0bL_T53kuTw" name="Message" typeRef="feel:string"/>
+          <dmn:rule id="_yxFDzaikEem0bL_T53kuTw">
+            <dmn:inputEntry id="_yxFDz6ikEem0bL_T53kuTw">
+              <dmn:text>&lt; 17</dmn:text>
+            </dmn:inputEntry>
+            <dmn:inputEntry id="_yxFD0aikEem0bL_T53kuTw">
+              <dmn:text>-</dmn:text>
+            </dmn:inputEntry>
+            <dmn:outputEntry id="_yxFD06ikEem0bL_T53kuTw">
+              <dmn:text>&quot;Driving is not allowed!&quot;</dmn:text>
+            </dmn:outputEntry>
+          </dmn:rule>
+          <dmn:rule id="_yxFD1aikEem0bL_T53kuTw">
+            <dmn:inputEntry id="_yxFD16ikEem0bL_T53kuTw">
+              <dmn:text>17</dmn:text>
+            </dmn:inputEntry>
+            <dmn:inputEntry id="_yxFD2aikEem0bL_T53kuTw">
+              <dmn:text>&quot;Germany&quot;</dmn:text>
+            </dmn:inputEntry>
+            <dmn:outputEntry id="_yxFq0KikEem0bL_T53kuTw">
+              <dmn:text>&quot;Guided driving is allowed!&quot;</dmn:text>
+            </dmn:outputEntry>
+          </dmn:rule>
+          <dmn:rule id="_yxFq0qikEem0bL_T53kuTw">
+            <dmn:inputEntry id="_yxFq1KikEem0bL_T53kuTw">
+              <dmn:text>17</dmn:text>
+            </dmn:inputEntry>
+            <dmn:inputEntry id="_yxFq1qikEem0bL_T53kuTw">
+              <dmn:text>not(&quot;Germany&quot;)</dmn:text>
+            </dmn:inputEntry>
+            <dmn:outputEntry id="_yxFq2KikEem0bL_T53kuTw">
+              <dmn:text>&quot;Driving is not allowed!&quot;</dmn:text>
+            </dmn:outputEntry>
+          </dmn:rule>
+          <dmn:rule id="_yxFq2qikEem0bL_T53kuTw">
+            <dmn:inputEntry id="_yxFq3KikEem0bL_T53kuTw">
+              <dmn:text>> 17</dmn:text>
+            </dmn:inputEntry>
+            <dmn:inputEntry id="_yxFq3qikEem0bL_T53kuTw">
+              <dmn:text>-</dmn:text>
+            </dmn:inputEntry>
+            <dmn:outputEntry id="_yxFq4KikEem0bL_T53kuTw">
+              <dmn:text>&quot;Driving is allowed!&quot;</dmn:text>
+            </dmn:outputEntry>
+          </dmn:rule>
+        </dmn:decisionTable>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_yxCngKikEem0bL_T53kuTw">
+          <dmn:text>table</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
+  <dmn:inputData id="_LLV-AEZfEemEHbY_Jf74Jg" name="Person">
+    <dmn:variable id="_LLV-AUZfEemEHbY_Jf74Jg" name="Person" typeRef="Person"/>
+  </dmn:inputData>
+</dmn:definitions>
