@@ -35,73 +35,63 @@
     <dmn:informationRequirement>
       <dmn:requiredInput href="#_LLV-AEZfEemEHbY_Jf74Jg"/>
     </dmn:informationRequirement>
-    <dmn:context id="_l_hokI3kEemO-PR4jHALfw">
-      <dmn:contextEntry>
-        <dmn:variable id="_mPk2xo3kEemO-PR4jHALfw" name="table"/>
-        <dmn:decisionTable id="_yxFDwaikEem0bL_T53kuTw">
-          <dmn:input id="_yxFDw6ikEem0bL_T53kuTw">
-            <dmn:inputExpression id="_yxFDxaikEem0bL_T53kuTw">
-              <dmn:text>Person.Age</dmn:text>
-            </dmn:inputExpression>
-          </dmn:input>
-          <dmn:input id="_yxFDx6ikEem0bL_T53kuTw">
-            <dmn:inputExpression id="_yxFDyaikEem0bL_T53kuTw">
-              <dmn:text>Person.Country</dmn:text>
-            </dmn:inputExpression>
-          </dmn:input>
-          <dmn:output id="_yxFDy6ikEem0bL_T53kuTw" name="Message" typeRef="feel:string"/>
-          <dmn:rule id="_yxFDzaikEem0bL_T53kuTw">
-            <dmn:inputEntry id="_yxFDz6ikEem0bL_T53kuTw">
-              <dmn:text>&lt; 17</dmn:text>
-            </dmn:inputEntry>
-            <dmn:inputEntry id="_yxFD0aikEem0bL_T53kuTw">
-              <dmn:text>-</dmn:text>
-            </dmn:inputEntry>
-            <dmn:outputEntry id="_yxFD06ikEem0bL_T53kuTw">
-              <dmn:text>&quot;Driving is not allowed!&quot;</dmn:text>
-            </dmn:outputEntry>
-          </dmn:rule>
-          <dmn:rule id="_yxFD1aikEem0bL_T53kuTw">
-            <dmn:inputEntry id="_yxFD16ikEem0bL_T53kuTw">
-              <dmn:text>17</dmn:text>
-            </dmn:inputEntry>
-            <dmn:inputEntry id="_yxFD2aikEem0bL_T53kuTw">
-              <dmn:text>&quot;Germany&quot;</dmn:text>
-            </dmn:inputEntry>
-            <dmn:outputEntry id="_yxFq0KikEem0bL_T53kuTw">
-              <dmn:text>&quot;Guided driving is allowed!&quot;</dmn:text>
-            </dmn:outputEntry>
-          </dmn:rule>
-          <dmn:rule id="_yxFq0qikEem0bL_T53kuTw">
-            <dmn:inputEntry id="_yxFq1KikEem0bL_T53kuTw">
-              <dmn:text>17</dmn:text>
-            </dmn:inputEntry>
-            <dmn:inputEntry id="_yxFq1qikEem0bL_T53kuTw">
-              <dmn:text>not(&quot;Germany&quot;)</dmn:text>
-            </dmn:inputEntry>
-            <dmn:outputEntry id="_yxFq2KikEem0bL_T53kuTw">
-              <dmn:text>&quot;Driving is not allowed!&quot;</dmn:text>
-            </dmn:outputEntry>
-          </dmn:rule>
-          <dmn:rule id="_yxFq2qikEem0bL_T53kuTw">
-            <dmn:inputEntry id="_yxFq3KikEem0bL_T53kuTw">
-              <dmn:text>> 17</dmn:text>
-            </dmn:inputEntry>
-            <dmn:inputEntry id="_yxFq3qikEem0bL_T53kuTw">
-              <dmn:text>-</dmn:text>
-            </dmn:inputEntry>
-            <dmn:outputEntry id="_yxFq4KikEem0bL_T53kuTw">
-              <dmn:text>&quot;Driving is allowed!&quot;</dmn:text>
-            </dmn:outputEntry>
-          </dmn:rule>
-        </dmn:decisionTable>
-      </dmn:contextEntry>
-      <dmn:contextEntry>
-        <dmn:literalExpression id="_yxCngKikEem0bL_T53kuTw">
-          <dmn:text>table</dmn:text>
-        </dmn:literalExpression>
-      </dmn:contextEntry>
-    </dmn:context>
+    <dmn:decisionTable id="_xxQgEalVEemuHPm5HcmPpg">
+      <dmn:input id="_xxQgE6lVEemuHPm5HcmPpg">
+        <dmn:inputExpression id="_xxQgFalVEemuHPm5HcmPpg">
+          <dmn:text>Person.Age</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_xxQgF6lVEemuHPm5HcmPpg">
+        <dmn:inputExpression id="_xxQgGalVEemuHPm5HcmPpg">
+          <dmn:text>Person.Country</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_xxQgG6lVEemuHPm5HcmPpg" name="Message" typeRef="feel:string"/>
+      <dmn:rule id="_xxRHIalVEemuHPm5HcmPpg">
+        <dmn:inputEntry id="_xxRHI6lVEemuHPm5HcmPpg">
+          <dmn:text>&lt; 17</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_xxRHJalVEemuHPm5HcmPpg">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_xxRHJ6lVEemuHPm5HcmPpg">
+          <dmn:text>&quot;Driving is not allowed!&quot;</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_xxRHKalVEemuHPm5HcmPpg">
+        <dmn:inputEntry id="_xxRHK6lVEemuHPm5HcmPpg">
+          <dmn:text>17</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_xxRHLalVEemuHPm5HcmPpg">
+          <dmn:text>&quot;Germany&quot;</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_xxRHL6lVEemuHPm5HcmPpg">
+          <dmn:text>&quot;Guided driving is allowed!&quot;</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_xxRHMalVEemuHPm5HcmPpg">
+        <dmn:inputEntry id="_xxRHM6lVEemuHPm5HcmPpg">
+          <dmn:text>17</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_xxRHNalVEemuHPm5HcmPpg">
+          <dmn:text>not(&quot;Germany&quot;)</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_xxRHN6lVEemuHPm5HcmPpg">
+          <dmn:text>&quot;Driving is not allowed!&quot;</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_xxRHOalVEemuHPm5HcmPpg">
+        <dmn:inputEntry id="_xxRHO6lVEemuHPm5HcmPpg">
+          <dmn:text>> 17</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_xxRHPalVEemuHPm5HcmPpg">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_xxRHP6lVEemuHPm5HcmPpg">
+          <dmn:text>&quot;Driving is allowed!&quot;</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
   </dmn:decision>
   <dmn:inputData id="_LLV-AEZfEemEHbY_Jf74Jg" name="Person">
     <dmn:variable id="_LLV-AUZfEemEHbY_Jf74Jg" name="Person" typeRef="Person"/>
