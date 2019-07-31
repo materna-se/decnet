@@ -19,10 +19,10 @@ public class Main {
 		DecisionSession decisionSession = new DecisionSession();
 		decisionSession.importModel(decision);
 
-		// The input is verbalized using JSON objects.
+		// The input is verbalized using JSON.
 		// executeModel serializes the inputs automatically and passes them on to the Drools engine.
 		// When the outputs are calculated, they are returned as a Map<String, Object> and can be used freely.
-		Map<String, Object> outputs = decisionSession.executeModel("{ \"Person\": { \"Age\": 18, \"Country\": \"Deutschland\" } }");
+		Map<String, Object> outputs = decisionSession.executeModel("{ \"Person\": { \"Age\": 17, \"Country\": \"Germany\" } }");
 		System.out.println("executeJSON(): " + outputs);
 	}
 }
