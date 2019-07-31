@@ -22,7 +22,7 @@ public class Main {
 		// The input is verbalized using JSON objects.
 		// executeModel serializes the inputs automatically and passes them on to the Drools engine.
 		// When the outputs are calculated, they are returned as a Map<String, Object> and can be used freely.
-		Map<String, Object> outputs = decisionSession.executeModel("{ \"Person\": { \"Alter\": 18, \"Land\": \"Deutschland\" } }");
+		Map<String, Object> outputs = decisionSession.executeModel("{ \"Person\": { \"Age\": 18, \"Country\": \"Deutschland\" } }");
 		System.out.println("executeJSON(): " + outputs);
 	}
 }
