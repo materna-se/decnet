@@ -41,7 +41,7 @@ public class CarServlet {
 		// When the output is calculated, it is returned as a Map<String, Object> and can be used freely.
 		Map<String, Object> calculatedOutput = decisionSession.executeModel(input);
 
-		return Response.status(Response.Status.OK).header("ETag", calculateHash(input)).entity(SerializationHelper.getInstance().toJSON(calculatedOutput)).build();
+		return Response.status(Response.Status.OK).header("Cache-Control", "public, max-age=5").entity(SerializationHelper.getInstance().toJSON(calculatedOutput)).build();
 	}
 
 	private String calculateHash(String input) throws NoSuchAlgorithmException {
