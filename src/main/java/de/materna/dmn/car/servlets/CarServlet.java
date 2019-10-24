@@ -3,20 +3,39 @@ package de.materna.dmn.car.servlets;
 
 import de.materna.jdec.DecisionSession;
 import de.materna.jdec.helpers.SerializationHelper;
+import org.apache.commons.io.IOUtils;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 @Path("")
 public class CarServlet {
 	private DecisionSession decisionSession = new DecisionSession();
 
+	public CarServlet() {
+		try {
+			InputStream decisionStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("/model.dmn");
+			if (decisionStream == null) {
+				throw new IOException("model.dmn can't be loaded. Does it exist?");
+			}
+
+			decisionSession.importModel(IOUtils.toString(decisionStream, StandardCharsets.UTF_8));
+			System.out.println("model.dmn was loaded successfully.");
+		}
+		catch (IOException exception) {
+			exception.printStackTrace();
+		}
+	}
+
 	@PUT
 	@Path("/store")
 	@Consumes("application/xml")
 	public Response importModel(String model) {
-		System.out.println("importModel: " + model);
+		System.out.println("importModel");
 
 		// The model is imported.
 		// During import, the Drools instance, among other things, is initialized.
@@ -30,7 +49,7 @@ public class CarServlet {
 	@Consumes("application/json")
 	@Produces("application/json")
 	public Response getInputs(String input) {
-		System.out.println("getInputs: " + input);
+		System.out.println("getInputs");
 
 		// executeModel serializes the inputs automatically and passes them on to the Drools engine.
 		// When the output is calculated, it is returned as a Map<String, Object> and can be used freely.
