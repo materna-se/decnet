@@ -1,10 +1,16 @@
 package de.materna.dmn.car;
 
-import de.materna.dmn.car.servlets.CarServlet;
+import de.materna.dmn.car.servlets.AnalyzerServlet;
+import de.materna.dmn.car.servlets.ExecutorServlet;
+import de.materna.dmn.car.servlets.StoreServlet;
+import de.materna.jdec.DecisionSession;
+import org.apache.commons.io.IOUtils;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +20,13 @@ public class MainApplication extends Application {
 	private Set<Class<?>> classes = new HashSet<>();
 
 	public MainApplication() throws IOException {
-		singletons.add(new CarServlet());
+		DecisionSession decisionSession = new DecisionSession();
+		InputStream decisionStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("/car.dmn");
+		decisionSession.importModel("car", "car", IOUtils.toString(decisionStream, StandardCharsets.UTF_8));
+
+		singletons.add(new StoreServlet(decisionSession));
+		singletons.add(new AnalyzerServlet(decisionSession));
+		singletons.add(new ExecutorServlet(decisionSession));
 	}
 
 	@Override
