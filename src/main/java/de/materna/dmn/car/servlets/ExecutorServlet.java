@@ -1,8 +1,7 @@
 package de.materna.dmn.car.servlets;
 
-
 import de.materna.jdec.DecisionSession;
-import de.materna.jdec.helpers.SerializationHelper;
+import de.materna.jdec.serialization.SerializationHelper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
