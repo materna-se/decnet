@@ -9,7 +9,6 @@ import org.apache.commons.io.IOUtils;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,8 +20,7 @@ public class MainApplication extends Application {
 
 	public MainApplication() throws IOException {
 		DecisionSession decisionSession = new DecisionSession();
-		InputStream decisionStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("/car.dmn");
-		decisionSession.importModel("car", "car", IOUtils.toString(decisionStream, StandardCharsets.UTF_8));
+		decisionSession.importModel("car", "car", IOUtils.toString(Thread.currentThread().getContextClassLoader().getResourceAsStream("/car.dmn"), StandardCharsets.UTF_8));
 
 		singletons.add(new StoreServlet(decisionSession));
 		singletons.add(new AnalyzerServlet(decisionSession));

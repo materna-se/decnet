@@ -1,0 +1,62 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch
+    environment:
+      MAVEN_OPTS: -Xmx3200m
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: git clone https://github.com/materna-se/decnet.git
+      - run: cd ./decnet && mvn package
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ./decnet
+
+  publish_release:
+    docker:
+      - image: cibuilds/github:0.10
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: cd ./decnet && ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -recreate -replace ${CIRCLE_TAG} ./target/decnet-${CIRCLE_TAG}.war
+
+  publish_container:
+    docker:
+      - image: circleci/buildpack-deps:xenial
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - setup_remote_docker
+      - run: cd ./decnet && docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} && docker build --build-arg VERSION=${CIRCLE_TAG} -t maternase/decnet:${CIRCLE_TAG} . && docker push maternase/decnet:${CIRCLE_TAG}
+
+workflows:
+  version: 2
+  build_and_publish:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
+
+      - publish_release:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/
+
+      - publish_container:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/
