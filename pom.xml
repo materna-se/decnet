@@ -2,8 +2,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.materna.jdec</groupId>
-	<artifactId>car</artifactId>
-	<version>1.0.0</version>
+	<artifactId>server</artifactId>
+	<version>1.2.0</version>
 
 	<dependencies>
 		<dependency>

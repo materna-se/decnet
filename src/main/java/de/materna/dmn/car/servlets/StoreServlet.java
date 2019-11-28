@@ -5,7 +5,7 @@ import de.materna.jdec.DecisionSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-@Path("/store/{namespace}/{name}")
+@Path("/{namespace}/{name}")
 public class StoreServlet {
 	private DecisionSession decisionSession;
 

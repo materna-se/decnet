@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
-@Path("/analyzer/{namespace}/{name}")
+@Path("/{namespace}/{name}")
 public class AnalyzerServlet {
 	private DecisionSession decisionSession;
 
@@ -19,13 +19,13 @@ public class AnalyzerServlet {
 	}
 
 	@GET
-	@Path("/inputs")
+	@Path("/input")
 	@Consumes("application/xml")
 	public Response getInputs(@PathParam("namespace") String namespace, @PathParam("name") String name) {
 		System.out.println("getInputs");
 
 		ComplexModelInput input = decisionSession.getInputs(namespace, name);
 
-		return Response.status(Response.Status.OK).entity(SerializationHelper.getInstance().toJSON(input)).build();
+		return Response.status(Response.Status.OK).entity(SerializationHelper.getInstance().toJSON(input.getValue())).build();
 	}
 }
