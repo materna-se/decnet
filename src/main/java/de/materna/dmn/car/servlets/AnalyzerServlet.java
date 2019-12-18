@@ -1,14 +1,13 @@
 package de.materna.dmn.car.servlets;
 
+import de.materna.dmn.car.beans.Input;
+import de.materna.dmn.car.helpers.ServletHelper;
 import de.materna.jdec.DecisionSession;
 import de.materna.jdec.model.ComplexModelInput;
-import de.materna.jdec.serialization.SerializationHelper;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.Map;
 
 @Path("/{namespace}/{name}")
 public class AnalyzerServlet {
@@ -21,11 +20,17 @@ public class AnalyzerServlet {
 	@GET
 	@Path("/input")
 	@Consumes("application/xml")
-	public Response getInputs(@PathParam("namespace") String namespace, @PathParam("name") String name) {
+	@Produces({"application/json", "text/xml"})
+	public Response getInputs(@PathParam("namespace") String namespace, @PathParam("name") String name, @HeaderParam("Accept") String accept) {
 		System.out.println("getInputs");
 
-		ComplexModelInput input = decisionSession.getInputs(namespace, name);
+		ComplexModelInput calculatedInput = decisionSession.getInputs(namespace, name);
 
-		return Response.status(Response.Status.OK).entity(SerializationHelper.getInstance().toJSON(input.getValue())).build();
+		// When serializing the decision input to XML, it is automatically wrapped in <LinkedHashMap></LinkedHashMap>.
+		// To avoid this "feature", we cast the LinkedHashMap to Input that inherits from LinkedHashMap.
+		Input input = new Input();
+		input.putAll((Map<String, ?>) calculatedInput.getValue());
+
+		return Response.status(Response.Status.OK).entity(ServletHelper.convertResponse(accept, input)).build();
 	}
 }
