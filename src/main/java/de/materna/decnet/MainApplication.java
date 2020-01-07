@@ -7,7 +7,6 @@ import de.materna.jdec.DecisionSession;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +15,7 @@ public class MainApplication extends Application {
 	private Set<Object> singletons = new HashSet<>();
 	private Set<Class<?>> classes = new HashSet<>();
 
-	public MainApplication() throws IOException {
+	public MainApplication() {
 		DecisionSession decisionSession = new DecisionSession();
 
 		singletons.add(new StoreServlet(decisionSession));
