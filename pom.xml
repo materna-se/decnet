@@ -3,7 +3,7 @@
 
 	<groupId>de.materna</groupId>
 	<artifactId>decnet</artifactId>
-	<version>1.2.5</version>
+	<version>1.2.8</version>
 
 	<packaging>war</packaging>
 
@@ -30,7 +30,7 @@
 		<dependency>
 			<groupId>com.github.materna-se</groupId>
 			<artifactId>jdec</artifactId>
-			<version>1.5.11-SNAPSHOT</version>
+			<version>1.5.12-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
