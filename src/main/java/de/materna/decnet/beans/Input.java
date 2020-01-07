@@ -1,4 +1,4 @@
-package de.materna.dmn.car.beans;
+package de.materna.decnet.beans;
 
 import java.util.LinkedHashMap;
 

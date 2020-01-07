@@ -1,4 +1,4 @@
-package de.materna.dmn.car.servlets;
+package de.materna.decnet.servlets;
 
 import de.materna.jdec.DecisionSession;
 

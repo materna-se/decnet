@@ -1,6 +1,5 @@
-package de.materna.dmn.car.helpers;
+package de.materna.decnet.helpers;
 
-import de.materna.dmn.car.beans.Input;
 import de.materna.jdec.serialization.SerializationHelper;
 
 public class ServletHelper {

@@ -1,7 +1,7 @@
-package de.materna.dmn.car.servlets;
+package de.materna.decnet.servlets;
 
-import de.materna.dmn.car.beans.Input;
-import de.materna.dmn.car.helpers.ServletHelper;
+import de.materna.decnet.beans.Input;
+import de.materna.decnet.helpers.ServletHelper;
 import de.materna.jdec.DecisionSession;
 import de.materna.jdec.model.ComplexModelInput;
 

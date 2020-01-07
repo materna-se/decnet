@@ -1,10 +1,8 @@
-package de.materna.dmn.car.servlets;
+package de.materna.decnet.servlets;
 
-import de.materna.dmn.car.beans.Input;
-import de.materna.dmn.car.beans.Output;
-import de.materna.dmn.car.helpers.ServletHelper;
+import de.materna.decnet.beans.Output;
+import de.materna.decnet.helpers.ServletHelper;
 import de.materna.jdec.DecisionSession;
-import de.materna.jdec.serialization.SerializationHelper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;

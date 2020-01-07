@@ -1,8 +1,8 @@
-package de.materna.dmn.car;
+package de.materna.decnet;
 
-import de.materna.dmn.car.servlets.AnalyzerServlet;
-import de.materna.dmn.car.servlets.ExecutorServlet;
-import de.materna.dmn.car.servlets.StoreServlet;
+import de.materna.decnet.servlets.AnalyzerServlet;
+import de.materna.decnet.servlets.ExecutorServlet;
+import de.materna.decnet.servlets.StoreServlet;
 import de.materna.jdec.DecisionSession;
 
 import javax.ws.rs.ApplicationPath;
