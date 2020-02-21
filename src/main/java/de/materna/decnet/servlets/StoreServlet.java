@@ -1,6 +1,8 @@
 package de.materna.decnet.servlets;
 
 import de.materna.jdec.DecisionSession;
+import de.materna.jdec.model.ModelImportException;
+import de.materna.jdec.serialization.SerializationHelper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -19,9 +21,12 @@ public class StoreServlet {
 	public Response getModel(@PathParam("namespace") String namespace, @PathParam("name") String name) {
 		System.out.println("getModel");
 
-		String model = decisionSession.getModel(namespace, name);
-
-		return Response.status(Response.Status.OK).entity(model).build();
+		try {
+			return Response.status(Response.Status.OK).entity(decisionSession.getModel(namespace, name)).build();
+		}
+		catch (NullPointerException e) { // TODO: decisionSession.getModel() should return null if the model does not exist.
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
 	}
 
 	@PUT
@@ -30,11 +35,16 @@ public class StoreServlet {
 	public Response importModel(@PathParam("namespace") String namespace, @PathParam("name") String name, String model) {
 		System.out.println("importModel");
 
-		// The model is imported.
-		// During import, the Drools instance, among other things, is initialized.
-		decisionSession.importModel(namespace, name, model);
+		try {
+			// The model is imported.
+			// During import, the Drools instance, among other things, is initialized.
+			decisionSession.importModel(namespace, name, model);
 
-		return Response.status(Response.Status.NO_CONTENT).build();
+			return Response.status(Response.Status.NO_CONTENT).build();
+		}
+		catch (ModelImportException exception) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(SerializationHelper.getInstance().toJSON(exception.getResult())).build();
+		}
 	}
 
 	@DELETE
