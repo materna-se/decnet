@@ -1,11 +1,14 @@
 package de.materna.decnet.servlets;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import de.materna.decnet.beans.Output;
 import de.materna.decnet.helpers.ServletHelper;
 import de.materna.jdec.DecisionSession;
+import de.materna.jdec.serialization.SerializationHelper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
 import java.util.Map;
 
 @Path("/{namespace}/{name}")
@@ -25,7 +28,8 @@ public class ExecutorServlet {
 
 		// executeModel serializes the inputs automatically and passes them on to the Drools engine.
 		// When the output is calculated, it is returned as a Map<String, Object> and can be used freely.
-		Map<String, Object> calculatedOutput = decisionSession.executeModel(namespace, name, input);
+		Map<String, Object> calculatedOutput = decisionSession.executeModel(namespace, name, SerializationHelper.getInstance().toClass(input, new TypeReference<HashMap<String, Object>>() {
+		}));
 
 		// When serializing the decision input to XML, it is automatically wrapped in <LinkedHashMap></LinkedHashMap>.
 		// To avoid this "feature", we cast the LinkedHashMap to Input that inherits from LinkedHashMap.
