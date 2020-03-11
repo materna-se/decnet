@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import de.materna.decnet.beans.Output;
 import de.materna.decnet.helpers.ServletHelper;
 import de.materna.jdec.DecisionSession;
+import de.materna.jdec.model.ModelNotFoundException;
 import de.materna.jdec.serialization.SerializationHelper;
 
 import javax.ws.rs.*;
@@ -23,7 +24,7 @@ public class ExecutorServlet {
 	@Path("")
 	@Consumes({"application/json", "text/xml"})
 	@Produces({"application/json", "text/xml"})
-	public Response executeModel(@PathParam("namespace") String namespace, @PathParam("name") String name, @HeaderParam("Accept") String accept, String input) {
+	public Response executeModel(@PathParam("namespace") String namespace, @PathParam("name") String name, @HeaderParam("Accept") String accept, String input) throws ModelNotFoundException {
 		System.out.println("executeModel");
 
 		// executeModel serializes the inputs automatically and passes them on to the Drools engine.

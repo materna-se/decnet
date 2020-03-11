@@ -2,6 +2,7 @@ package de.materna.decnet.servlets;
 
 import de.materna.jdec.DecisionSession;
 import de.materna.jdec.model.ModelImportException;
+import de.materna.jdec.model.ModelNotFoundException;
 import de.materna.jdec.serialization.SerializationHelper;
 
 import javax.ws.rs.*;
@@ -17,21 +18,21 @@ public class StoreServlet {
 
 	@GET
 	@Path("")
-	@Consumes("application/xml")
+	@Consumes({"text/xml", "application/java"})
 	public Response getModel(@PathParam("namespace") String namespace, @PathParam("name") String name) {
 		System.out.println("getModel");
 
 		try {
 			return Response.status(Response.Status.OK).entity(decisionSession.getModel(namespace, name)).build();
 		}
-		catch (NullPointerException e) { // TODO: decisionSession.getModel() should return null if the model does not exist.
+		catch (ModelNotFoundException e) {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		}
 	}
 
 	@PUT
 	@Path("")
-	@Consumes("application/xml")
+	@Consumes({"text/xml", "application/java"})
 	public Response importModel(@PathParam("namespace") String namespace, @PathParam("name") String name, String model) {
 		System.out.println("importModel");
 
@@ -49,12 +50,17 @@ public class StoreServlet {
 
 	@DELETE
 	@Path("")
-	@Consumes("application/xml")
+	@Consumes({"text/xml", "application/java"})
 	public Response deleteModel(@PathParam("namespace") String namespace, @PathParam("name") String name) {
 		System.out.println("deleteModel");
 
-		decisionSession.deleteModel(namespace, name);
+		try {
+			decisionSession.deleteModel(namespace, name);
 
-		return Response.status(Response.Status.NO_CONTENT).build();
+			return Response.status(Response.Status.NO_CONTENT).build();
+		}
+		catch (ModelImportException exception) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(SerializationHelper.getInstance().toJSON(exception.getResult())).build();
+		}
 	}
 }
