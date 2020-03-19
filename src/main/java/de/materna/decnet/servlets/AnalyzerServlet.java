@@ -21,7 +21,7 @@ public class AnalyzerServlet {
 	@GET
 	@Path("/structure")
 	@Consumes("application/xml")
-	@Produces({"application/json", "text/xml"})
+	@Produces({"application/json", "application/xml"})
 	public Response getInputStructure(@PathParam("namespace") String namespace, @PathParam("name") String name, @HeaderParam("Accept") String accept) throws ModelNotFoundException {
 		System.out.println("getInputStructure");
 

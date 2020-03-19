@@ -18,7 +18,8 @@ public class StoreServlet {
 
 	@GET
 	@Path("")
-	@Consumes({"text/xml", "application/java"})
+	@Consumes({"application/xml", "application/java"})
+	@Produces({"application/xml", "application/java"})
 	public Response getModel(@PathParam("namespace") String namespace, @PathParam("name") String name) {
 		System.out.println("getModel");
 
@@ -32,7 +33,7 @@ public class StoreServlet {
 
 	@PUT
 	@Path("")
-	@Consumes({"text/xml", "application/java"})
+	@Consumes({"application/xml", "application/java"})
 	public Response importModel(@PathParam("namespace") String namespace, @PathParam("name") String name, String model) {
 		System.out.println("importModel");
 
@@ -50,7 +51,7 @@ public class StoreServlet {
 
 	@DELETE
 	@Path("")
-	@Consumes({"text/xml", "application/java"})
+	@Consumes({"application/xml", "application/java"})
 	public Response deleteModel(@PathParam("namespace") String namespace, @PathParam("name") String name) {
 		System.out.println("deleteModel");
 

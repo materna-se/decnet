@@ -22,8 +22,8 @@ public class ExecutorServlet {
 
 	@POST
 	@Path("")
-	@Consumes({"application/json", "text/xml"})
-	@Produces({"application/json", "text/xml"})
+	@Consumes({"application/json", "application/xml"})
+	@Produces({"application/json", "application/xml"})
 	public Response executeModel(@PathParam("namespace") String namespace, @PathParam("name") String name, @HeaderParam("Accept") String accept, String input) throws ModelNotFoundException {
 		System.out.println("executeModel");
 

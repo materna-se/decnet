@@ -17,7 +17,7 @@ public class MainApplication extends Application {
 	private Set<Class<?>> classes = new HashSet<>();
 
 	public MainApplication() throws Exception {
-		DecisionSession decisionSession = new DynamicDecisionSession();
+		DecisionSession decisionSession = new HybridDecisionSession();
 
 		singletons.add(new StoreServlet(decisionSession));
 		singletons.add(new AnalyzerServlet(decisionSession));
