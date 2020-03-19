@@ -4,7 +4,7 @@ import de.materna.decnet.servlets.AnalyzerServlet;
 import de.materna.decnet.servlets.ExecutorServlet;
 import de.materna.decnet.servlets.StoreServlet;
 import de.materna.jdec.DecisionSession;
-import de.materna.jdec.DynamicDecisionSession;
+import de.materna.jdec.HybridDecisionSession;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

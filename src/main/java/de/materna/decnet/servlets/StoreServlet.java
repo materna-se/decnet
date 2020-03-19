@@ -1,6 +1,7 @@
 package de.materna.decnet.servlets;
 
 import de.materna.jdec.DecisionSession;
+import de.materna.jdec.model.ImportResult;
 import de.materna.jdec.model.ModelImportException;
 import de.materna.jdec.model.ModelNotFoundException;
 import de.materna.jdec.serialization.SerializationHelper;
@@ -21,8 +22,6 @@ public class StoreServlet {
 	@Consumes({"application/xml", "application/java"})
 	@Produces({"application/xml", "application/java"})
 	public Response getModel(@PathParam("namespace") String namespace, @PathParam("name") String name) {
-		System.out.println("getModel");
-
 		try {
 			return Response.status(Response.Status.OK).entity(decisionSession.getModel(namespace, name)).build();
 		}
@@ -35,14 +34,11 @@ public class StoreServlet {
 	@Path("")
 	@Consumes({"application/xml", "application/java"})
 	public Response importModel(@PathParam("namespace") String namespace, @PathParam("name") String name, String model) {
-		System.out.println("importModel");
-
 		try {
 			// The model is imported.
 			// During import, the Drools instance, among other things, is initialized.
-			decisionSession.importModel(namespace, name, model);
-
-			return Response.status(Response.Status.NO_CONTENT).build();
+			ImportResult importResult = decisionSession.importModel(namespace, name, model);
+			return Response.status(Response.Status.OK).entity(SerializationHelper.getInstance().toJSON(importResult)).build();
 		}
 		catch (ModelImportException exception) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(SerializationHelper.getInstance().toJSON(exception.getResult())).build();
@@ -53,8 +49,6 @@ public class StoreServlet {
 	@Path("")
 	@Consumes({"application/xml", "application/java"})
 	public Response deleteModel(@PathParam("namespace") String namespace, @PathParam("name") String name) {
-		System.out.println("deleteModel");
-
 		try {
 			decisionSession.deleteModel(namespace, name);
 
