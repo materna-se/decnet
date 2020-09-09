@@ -29,10 +29,10 @@ Returns the decision model.
 
 #### Responses
 
-|Status|Meaning|Description|Schema|
+|Status|Meaning|Description|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The model is returned.|None|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The model was not found.|None|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The model is returned.|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The model was not found.|
 
 ### `POST /{namespace}`
 
@@ -57,10 +57,10 @@ Executes the decision model.
 
 #### Responses
 
-|Status|Meaning|Description|Schema|
+|Status|Meaning|Description|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The result of the model execution.|Inline|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The model was not found.|None|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The result of the model execution.|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The model was not found.|
 
 ##### Response Schema
 
@@ -102,9 +102,9 @@ Imports the decision model.
 
 #### Responses
 
-|Status|Meaning|Description|Schema|
+|Status|Meaning|Description|
 |---|---|---|---|
-|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|The model was imported successfully.|Inline|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|The model was imported successfully.|
 
 ##### Response Schema
 
@@ -138,9 +138,9 @@ Deletes the decision model.
 
 #### Responses
 
-|Status|Meaning|Description|Schema|
+|Status|Meaning|Description|
 |---|---|---|---|
-|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|The model was deleted successfully.|None|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|The model was deleted successfully.|
 
 ### `GET /{namespace}/structure`
 
@@ -154,10 +154,10 @@ Deletes the decision model.
 
 #### Responses
 
-|Status|Meaning|Description|Schema|
+|Status|Meaning|Description|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the input structure that is required for executing the decision model.|[ComplexInputStructure](#schemacomplexinputstructure)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The model was not found.|None|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the input structure that is required for executing the decision model.|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The model was not found.|
 
 ##### Example Response
 
