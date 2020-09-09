@@ -1,6 +1,6 @@
 package de.materna.decnet.servlets;
 
-import de.materna.decnet.beans.Input;
+import de.materna.decnet.beans.Structure;
 import de.materna.decnet.helpers.ServletHelper;
 import de.materna.jdec.DecisionSession;
 import de.materna.jdec.model.InputStructure;

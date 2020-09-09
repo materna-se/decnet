@@ -23,7 +23,7 @@ public class ExecutorServlet {
 	@Path("")
 	@Consumes({"application/json", "application/xml"})
 	@Produces({"application/json", "application/xml"})
-	public Response executeModel(@PathParam("namespace") String namespace, @HeaderParam("Accept") String accept, String input) throws ModelNotFoundException {
+	public Response executeModel(@PathParam("namespace") String namespace, @HeaderParam("Accept") String accept, String input) {
 		try {
 			// executeModel serializes the inputs automatically and passes them on to the Drools engine.
 			// When the output is calculated, it is returned as a Map<String, Object> and can be used freely.

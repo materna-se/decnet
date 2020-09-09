@@ -1,5 +1,6 @@
 package de.materna.decnet.servlets;
 
+import de.materna.decnet.helpers.ServletHelper;
 import de.materna.jdec.DecisionSession;
 import de.materna.jdec.model.ImportResult;
 import de.materna.jdec.model.ModelImportException;
@@ -34,23 +35,23 @@ public class StoreServlet {
 	@PUT
 	@Path("")
 	@Consumes({"application/xml", "application/java"})
-	public Response importModel(@PathParam("namespace") String namespace, String model) {
+	public Response importModel(@PathParam("namespace") String namespace, @HeaderParam("Accept") String accept, String model) {
 		try {
 			// The model is imported.
 			// During import, the Drools instance, among other things, is initialized.
 			ImportResult importResult = decisionSession.importModel(namespace, model);
-			return Response.status(Response.Status.OK).entity(SerializationHelper.getInstance().toJSON(importResult)).build();
+			return Response.status(Response.Status.OK).entity(ServletHelper.convertResponse(accept, importResult)).build();
 		}
 		catch (ModelImportException exception) {
 			exception.printStackTrace();
-			return Response.status(Response.Status.BAD_REQUEST).entity(SerializationHelper.getInstance().toJSON(exception.getResult())).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ServletHelper.convertResponse(accept, exception.getResult())).build();
 		}
 	}
 
 	@DELETE
 	@Path("")
 	@Consumes({"application/xml", "application/java"})
-	public Response deleteModel(@PathParam("namespace") String namespace) {
+	public Response deleteModel(@PathParam("namespace") String namespace, @HeaderParam("Accept") String accept) {
 		try {
 			decisionSession.deleteModel(namespace);
 
@@ -58,7 +59,7 @@ public class StoreServlet {
 		}
 		catch (ModelImportException exception) {
 			exception.printStackTrace();
-			return Response.status(Response.Status.BAD_REQUEST).entity(SerializationHelper.getInstance().toJSON(exception.getResult())).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ServletHelper.convertResponse(accept, exception.getResult())).build();
 		}
 	}
 }
