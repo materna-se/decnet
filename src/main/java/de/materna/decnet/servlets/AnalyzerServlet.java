@@ -28,10 +28,10 @@ public class AnalyzerServlet {
 
 			// When serializing the decision input to XML, it is automatically wrapped in <LinkedHashMap></LinkedHashMap>.
 			// To avoid this "feature", we cast the LinkedHashMap to Input that inherits from LinkedHashMap.
-			Input input = new Input();
-			input.putAll(inputStructure);
+			Structure structure = new Structure();
+			structure.putAll(inputStructure);
 
-			return Response.status(Response.Status.OK).entity(ServletHelper.convertResponse(accept, input)).build();
+			return Response.status(Response.Status.OK).entity(ServletHelper.convertResponse(accept, structure)).build();
 		}
 		catch (ModelNotFoundException exception) {
 			return Response.status(Response.Status.NOT_FOUND).build();

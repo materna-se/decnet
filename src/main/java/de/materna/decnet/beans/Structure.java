@@ -2,5 +2,5 @@ package de.materna.decnet.beans;
 
 import java.util.LinkedHashMap;
 
-public class Input extends LinkedHashMap<String, Object> {
+public class Structure extends LinkedHashMap<String, Object> {
 }
