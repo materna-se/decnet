@@ -6,7 +6,6 @@
   <img src="https://img.shields.io/github/v/release/materna-se/decnet?style=flat-square">
 </p>
 
-
 decnet is an RESTful execution server for decision models powered by jDEC.
 
 ## Download
@@ -30,7 +29,7 @@ Returns the decision model.
 #### Responses
 
 |Status|Meaning|Description|
-|---|---|---|---|
+|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The model is returned.|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The model was not found.|
 
@@ -58,7 +57,7 @@ Executes the decision model.
 #### Responses
 
 |Status|Meaning|Description|
-|---|---|---|---|
+|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The result of the model execution.|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The model was not found.|
 
@@ -103,7 +102,7 @@ Imports the decision model.
 #### Responses
 
 |Status|Meaning|Description|
-|---|---|---|---|
+|---|---|---|
 |204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|The model was imported successfully.|
 
 ##### Response Schema
