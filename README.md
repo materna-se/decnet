@@ -15,7 +15,7 @@ Artifacts of decnet are published in regular intervals to the releases section o
 
 ## Documentation
 
-### `GET /{namespace}/{name}`
+### `GET /{namespace}`
 
 Returns the decision model.
 
@@ -26,7 +26,6 @@ Returns the decision model.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |namespace|path|string|true|none|
-|name|path|string|true|none|
 
 #### Responses
 
@@ -35,7 +34,7 @@ Returns the decision model.
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The model is returned.|None|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The model was not found.|None|
 
-### `POST /{namespace}/{name}`
+### `POST /{namespace}`
 
 Executes the decision model.
 
@@ -47,7 +46,6 @@ Executes the decision model.
 |---|---|---|---|---|
 |body|body|object|false|none|
 |namespace|path|string|true|none|
-|name|path|string|true|none|
 
 ##### Example Request
 
@@ -90,7 +88,7 @@ The result of the model execution.
 }
 ```
 
-### `PUT /{namespace}/{name}`
+### `PUT /{namespace}`
 
 Imports the decision model.
 
@@ -101,7 +99,6 @@ Imports the decision model.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |namespace|path|string|true|none|
-|name|path|string|true|none|
 
 #### Responses
 
@@ -127,7 +124,7 @@ Status Code `204`
 }
 ```
 
-`DELETE /{namespace}/{name}`
+`DELETE /{namespace}`
 
 Deletes the decision model.
 
@@ -138,7 +135,6 @@ Deletes the decision model.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |namespace|path|string|true|none|
-|name|path|string|true|none|
 
 #### Responses
 
@@ -146,7 +142,7 @@ Deletes the decision model.
 |---|---|---|---|
 |204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|The model was deleted successfully.|None|
 
-### `GET /{namespace}/{name}/structure`
+### `GET /{namespace}/structure`
 
 #### Request
 
@@ -155,7 +151,6 @@ Deletes the decision model.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |namespace|path|string|true|none|
-|name|path|string|true|none|
 
 #### Responses
 
