@@ -4,6 +4,7 @@ import de.materna.decnet.beans.Input;
 import de.materna.decnet.helpers.ServletHelper;
 import de.materna.jdec.DecisionSession;
 import de.materna.jdec.model.ComplexInputStructure;
+import de.materna.jdec.model.InputStructure;
 import de.materna.jdec.model.ModelImportException;
 import de.materna.jdec.model.ModelNotFoundException;
 import org.codehaus.janino.Mod;
@@ -12,7 +13,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.Map;
 
-@Path("/{namespace}/{name}")
+@Path("/{namespace}")
 public class AnalyzerServlet {
 	private DecisionSession decisionSession;
 
@@ -24,14 +25,14 @@ public class AnalyzerServlet {
 	@Path("/structure")
 	@Consumes("application/xml")
 	@Produces({"application/json", "application/xml"})
-	public Response getInputStructure(@PathParam("namespace") String namespace, @PathParam("name") String name, @HeaderParam("Accept") String accept) throws ModelNotFoundException {
+	public Response getInputStructure(@PathParam("namespace") String namespace, @HeaderParam("Accept") String accept) {
 		try {
-			ComplexInputStructure inputStructure = decisionSession.getInputStructure(namespace, name);
+			Map<String, InputStructure> inputStructure = decisionSession.getInputStructure(namespace);
 
 			// When serializing the decision input to XML, it is automatically wrapped in <LinkedHashMap></LinkedHashMap>.
 			// To avoid this "feature", we cast the LinkedHashMap to Input that inherits from LinkedHashMap.
 			Input input = new Input();
-			input.putAll((Map<String, ?>) inputStructure.getValue());
+			input.putAll(inputStructure);
 
 			return Response.status(Response.Status.OK).entity(ServletHelper.convertResponse(accept, input)).build();
 		}

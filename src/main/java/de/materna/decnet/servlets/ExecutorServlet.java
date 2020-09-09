@@ -11,7 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
 
-@Path("/{namespace}/{name}")
+@Path("/{namespace}")
 public class ExecutorServlet {
 	private DecisionSession decisionSession;
 
@@ -23,13 +23,18 @@ public class ExecutorServlet {
 	@Path("")
 	@Consumes({"application/json", "application/xml"})
 	@Produces({"application/json", "application/xml"})
-	public Response executeModel(@PathParam("namespace") String namespace, @PathParam("name") String name, @HeaderParam("Accept") String accept, String input) throws ModelNotFoundException {
-		// executeModel serializes the inputs automatically and passes them on to the Drools engine.
-		// When the output is calculated, it is returned as a Map<String, Object> and can be used freely.
-		ExecutionResult executionResult = decisionSession.executeModel(namespace, name, SerializationHelper.getInstance().toClass(input, new TypeReference<HashMap<String, Object>>() {
-		}));
+	public Response executeModel(@PathParam("namespace") String namespace, @HeaderParam("Accept") String accept, String input) throws ModelNotFoundException {
+		try {
+			// executeModel serializes the inputs automatically and passes them on to the Drools engine.
+			// When the output is calculated, it is returned as a Map<String, Object> and can be used freely.
+			ExecutionResult executionResult = decisionSession.executeModel(namespace, SerializationHelper.getInstance().toClass(input, new TypeReference<HashMap<String, Object>>() {
+			}));
 
-		// TODO: Add header("Cache-Control", "public, max-age=5") to enable caching at load balancer level.
-		return Response.status(Response.Status.OK).entity(ServletHelper.convertResponse(accept, executionResult)).build();
+			// TODO: Add header("Cache-Control", "public, max-age=5") to enable caching at load balancer level.
+			return Response.status(Response.Status.OK).entity(ServletHelper.convertResponse(accept, executionResult)).build();
+		}
+		catch (ModelNotFoundException exception) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
 	}
 }

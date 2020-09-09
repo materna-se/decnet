@@ -9,7 +9,7 @@ import de.materna.jdec.serialization.SerializationHelper;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-@Path("/{namespace}/{name}")
+@Path("/{namespace}")
 public class StoreServlet {
 	private DecisionSession decisionSession;
 
@@ -21,11 +21,12 @@ public class StoreServlet {
 	@Path("")
 	@Consumes({"application/xml", "application/java"})
 	@Produces({"application/xml", "application/java"})
-	public Response getModel(@PathParam("namespace") String namespace, @PathParam("name") String name) {
+	public Response getModel(@PathParam("namespace") String namespace) {
 		try {
-			return Response.status(Response.Status.OK).entity(decisionSession.getModel(namespace, name)).build();
+			return Response.status(Response.Status.OK).entity(decisionSession.getModel(namespace)).build();
 		}
-		catch (ModelNotFoundException e) {
+		catch (ModelNotFoundException exception) {
+			exception.printStackTrace();
 			return Response.status(Response.Status.NOT_FOUND).build();
 		}
 	}
@@ -33,14 +34,15 @@ public class StoreServlet {
 	@PUT
 	@Path("")
 	@Consumes({"application/xml", "application/java"})
-	public Response importModel(@PathParam("namespace") String namespace, @PathParam("name") String name, String model) {
+	public Response importModel(@PathParam("namespace") String namespace, String model) {
 		try {
 			// The model is imported.
 			// During import, the Drools instance, among other things, is initialized.
-			ImportResult importResult = decisionSession.importModel(namespace, name, model);
+			ImportResult importResult = decisionSession.importModel(namespace, model);
 			return Response.status(Response.Status.OK).entity(SerializationHelper.getInstance().toJSON(importResult)).build();
 		}
 		catch (ModelImportException exception) {
+			exception.printStackTrace();
 			return Response.status(Response.Status.BAD_REQUEST).entity(SerializationHelper.getInstance().toJSON(exception.getResult())).build();
 		}
 	}
@@ -48,13 +50,14 @@ public class StoreServlet {
 	@DELETE
 	@Path("")
 	@Consumes({"application/xml", "application/java"})
-	public Response deleteModel(@PathParam("namespace") String namespace, @PathParam("name") String name) {
+	public Response deleteModel(@PathParam("namespace") String namespace) {
 		try {
-			decisionSession.deleteModel(namespace, name);
+			decisionSession.deleteModel(namespace);
 
 			return Response.status(Response.Status.NO_CONTENT).build();
 		}
 		catch (ModelImportException exception) {
+			exception.printStackTrace();
 			return Response.status(Response.Status.BAD_REQUEST).entity(SerializationHelper.getInstance().toJSON(exception.getResult())).build();
 		}
 	}
