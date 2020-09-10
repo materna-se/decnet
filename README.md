@@ -138,7 +138,7 @@ Deletes the decision model.
 #### Responses
 
 |Status|Meaning|Description|
-|---|---|---|---|
+|---|---|---|
 |204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|The model was deleted successfully.|
 
 ### `GET /{namespace}/structure`
@@ -154,7 +154,7 @@ Deletes the decision model.
 #### Responses
 
 |Status|Meaning|Description|
-|---|---|---|---|
+|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the input structure that is required for executing the decision model.|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The model was not found.|
 
