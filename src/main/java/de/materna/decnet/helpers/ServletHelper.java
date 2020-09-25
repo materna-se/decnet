@@ -4,7 +4,7 @@ import de.materna.jdec.serialization.SerializationHelper;
 
 public class ServletHelper {
 	public static String convertResponse(String accept, Object object) {
-		if (accept.equals("application/xml")) {
+		if (accept != null && accept.equals("application/xml")) {
 			return SerializationHelper.getInstance().toXML(object);
 		}
 
