@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 @Path("/{namespace}")
 public class ExecutorServlet {
-	private DecisionSession decisionSession;
+	private final DecisionSession decisionSession;
 
 	public ExecutorServlet(DecisionSession decisionSession) {
 		this.decisionSession = decisionSession;

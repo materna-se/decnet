@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Path("/{namespace}")
 public class AnalyzerServlet {
-	private DecisionSession decisionSession;
+	private final DecisionSession decisionSession;
 
 	public AnalyzerServlet(DecisionSession decisionSession) {
 		this.decisionSession = decisionSession;

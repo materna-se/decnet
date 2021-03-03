@@ -13,8 +13,8 @@ import java.util.Set;
 
 @ApplicationPath("")
 public class MainApplication extends Application {
-	private Set<Object> singletons = new HashSet<>();
-	private Set<Class<?>> classes = new HashSet<>();
+	private final Set<Object> singletons = new HashSet<>();
+	private final Set<Class<?>> classes = new HashSet<>();
 
 	public MainApplication() throws Exception {
 		DecisionSession decisionSession = new HybridDecisionSession();

@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/{namespace}")
 public class StoreServlet {
-	private DecisionSession decisionSession;
+	private final DecisionSession decisionSession;
 
 	public StoreServlet(DecisionSession decisionSession) {
 		this.decisionSession = decisionSession;
