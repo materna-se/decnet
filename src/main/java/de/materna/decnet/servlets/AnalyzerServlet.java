@@ -20,7 +20,6 @@ public class AnalyzerServlet {
 
 	@GET
 	@Path("/structure")
-	@Consumes("application/xml")
 	@Produces({"application/json", "application/xml"})
 	public Response getInputStructure(@PathParam("namespace") String namespace, @HeaderParam("Accept") String accept) {
 		try {
